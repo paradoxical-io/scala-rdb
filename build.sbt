@@ -3,6 +3,8 @@ import sbt._
 
 lazy val commonSettings = BuildConfig.commonSettings()
 
+name := "paradoxical-rdb"
+
 lazy val rdb_config = (project in file("config")).
   settings(commonSettings).
   settings(

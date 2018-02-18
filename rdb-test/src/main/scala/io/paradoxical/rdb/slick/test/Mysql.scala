@@ -16,6 +16,7 @@ object Mysql {
       DockerCreator.build(
         DockerClientConfig.
           builder.
+          pullAlways(true).
           imageName(s"mysql:${tag}").
           envVars(List(
             new EnvironmentVar("MYSQL_ALLOW_EMPTY_PASSWORD", "true")
