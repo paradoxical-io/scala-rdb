@@ -37,9 +37,7 @@ class H2DBProviderSpec extends BaseProviderSpec {
   }
 
   it should "build an H2 connection with a data source" in {
-    val defaultConfiguration = TestConfig.default.toBasicRdb
-
-    val url = H2DBProvider.getInMemoryUrl("test3")
+    val defaultConfiguration = TestConfig.default.toBasicRdb.copy(url = H2DBProvider.getInMemoryUrl("test3"))
 
     val dataSource = ManualSourceProviders.withConfig[org.h2.Driver](defaultConfiguration)
 
