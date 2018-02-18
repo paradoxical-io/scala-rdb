@@ -10,17 +10,17 @@ import scala.concurrent.duration.Duration
 case class RdbConfigWithConnectionPool(
   url: String,
   credentials: RdbCredentials,
-  security: RdbSecurityConfig,
+  security: Option[RdbSecurityConfig] = None,
   connection_pool: HikariConnectionPoolConfig
 ) {
   def toBasicRdb = BasicRdbConfig(url, credentials, security)
 }
 
 case class HikariConnectionPoolConfig(
-  max_pool_size: Int,
-  pool_name: String,
-  minimum_idle: Option[Int],
-  idle_timeout: Option[Duration]
+  max_pool_size: Int = 20,
+  pool_name: String = "default",
+  minimum_idle: Option[Int] = None,
+  idle_timeout: Option[Duration] = None
 ) {
   def toHikariConfig: HikariConfig = {
     val config = new HikariConfig()

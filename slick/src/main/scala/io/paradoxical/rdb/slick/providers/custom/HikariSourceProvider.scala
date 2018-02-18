@@ -6,6 +6,7 @@ import io.paradoxical.rdb.slick.providers.SourceProviderUtils
 import io.paradoxical.rdb.slick.providers.SourceProviderUtils.{defaultExecutionContext, mergeProps}
 import com.zaxxer.hikari.metrics.MetricsTrackerFactory
 import com.zaxxer.hikari.{HikariConfig, HikariDataSource}
+import java.util.Properties
 import javax.sql.DataSource
 import scala.concurrent.ExecutionContext
 
@@ -34,7 +35,7 @@ object HikariSourceProvider {
     connectionPool.setJdbcUrl(config.url)
     connectionPool.setMetricsTrackerFactory(metricsTrackerFactory)
 
-    val props = mergeProps(config.credentials.toJdbcProps, config.security.toJdbcProps)
+    val props = mergeProps(config.credentials.toJdbcProps, config.security.map(_.toJdbcProps).getOrElse(new Properties()))
 
     connectionPool.setDataSourceProperties(props)
 

@@ -23,7 +23,7 @@ case class JvmKeyStoreConfig(
 case class BasicRdbConfig(
   url: String,
   credentials: RdbCredentials,
-  security: RdbSecurityConfig
+  security: Option[RdbSecurityConfig] = None
 )
 
 case class RdbCredentials(

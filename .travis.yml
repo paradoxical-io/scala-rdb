@@ -1,4 +1,7 @@
 language: scala
+sudo: required
+services:
+  - docker
 scala:
   - 2.12.4
 jdk:

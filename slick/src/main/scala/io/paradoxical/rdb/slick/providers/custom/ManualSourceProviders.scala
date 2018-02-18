@@ -39,7 +39,7 @@ object ManualSourceProviders {
     config: BasicRdbConfig,
     properties: Properties
   ): DataSource = {
-    val props = mergeProps(config.security.toJdbcProps, properties)
+    val props = mergeProps(config.security.map(_.toJdbcProps).getOrElse(new Properties()), properties)
 
     new DriverDataSource(
       config.url,
