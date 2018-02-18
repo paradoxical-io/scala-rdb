@@ -1,0 +1,4 @@
+{
+  "application" : "accounts_service",
+  "run_list"    : "curalate::accounts_service"
+}
